@@ -3,6 +3,28 @@ import asyncHadler from "express-async-handler";
 import subcategoryModel from "../models/subcategoryModel";
 import { createDoc, deleteOne, getAll, getOne, UpdateOne } from "./refactoryHandling";
 import { SubCategoryInterface } from "../interfaces/subcategories";
+import { FilterData } from "../interfaces/filterData";
+
+// export const filterSubcategories = (req:Request, res:Response, next:NextFunction)=>{
+//     let filterData: FilterData = {}
+//     if(req.params.categoryId){
+//         filterData.category = req.params.categoryId
+//         console.log(filterData.category);
+//     }
+//     req.filterData = filterData;
+//     next()
+// }
+
+export const filterSubcategories = (req: Request, res: Response, next: NextFunction) => {
+    let filterData: FilterData = {};
+    if (req.params.categoryId) {
+        filterData.category = req.params.categoryId;
+    }
+    req.filterData = filterData;
+    console.log(req.filterData)
+    next();
+    }
+
 
 export const getAllSubCategory = getAll<SubCategoryInterface>(subcategoryModel, 'subcategory');
 export const createSubCategory = createDoc<SubCategoryInterface>(subcategoryModel);

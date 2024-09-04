@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { getAllSubCategory, getSubCategory, updateSubCategory, deleteSubCategory, createSubCategory } from "../controllers/subcategories";
+import { getAllSubCategory, getSubCategory, updateSubCategory, deleteSubCategory, createSubCategory,filterSubcategories } from "../controllers/subcategories";
+import * as all from "../interfaces"
 
 
 
-
-const subcategoryRoute: Router = Router();
+const subcategoryRoute: Router = Router({mergeParams:true});
 
 subcategoryRoute.route('/')
-    .get(getAllSubCategory)
+    .get(filterSubcategories,getAllSubCategory)
     .post(createSubCategory)
 
 subcategoryRoute.route('/:id')
