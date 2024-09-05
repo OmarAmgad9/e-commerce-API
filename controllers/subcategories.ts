@@ -21,7 +21,6 @@ export const filterSubcategories = (req: Request, res: Response, next: NextFunct
         filterData.category = req.params.categoryId;
     }
     req.filterData = filterData;
-    console.log(req.filterData)
     next();
     }
 
