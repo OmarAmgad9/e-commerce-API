@@ -4,7 +4,6 @@ import validatorMiddleware from "../../middlewares/validatorMiddlewar";
 import categoriesModel from "../../models/categoriesModel";
 
 
-
 export const createSubCategoryValidator: RequestHandler[] = [
     check('name').notEmpty().withMessage('Should Enter Name For Category')
     .isLength({min:2, max:50}).withMessage('Length Of Name Should be between 2 and 50 character')
@@ -21,14 +20,18 @@ export const createSubCategoryValidator: RequestHandler[] = [
 ];
 
 export const getSubCategoryValidator: RequestHandler[] =[
-    check('id').isMongoId().withMessage('This Id Not Valid')
+    check('id').isMongoId().withMessage('This Id Not Valid'),
+    validatorMiddleware
 ]
 export const updateSubCategoryValidator: RequestHandler[] =[
     check('id').isMongoId().withMessage('This Id Not Valid'),
     check('name').optional().isLength({min:2, max:50}).withMessage('Length should be between 2 and 50 character'),
-    check('category').optional().isMongoId().withMessage('invalid id')
+    check('category').optional().isMongoId().withMessage('invalid id'),
+    validatorMiddleware
 ]
 
 export const deleteSubCategoryValidator: RequestHandler[] =[
     check('id').isMongoId().withMessage('This Id Not Valid')
+    ,
+    validatorMiddleware
 ]

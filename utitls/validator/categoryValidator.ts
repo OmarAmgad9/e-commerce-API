@@ -19,13 +19,16 @@ export const createCategoryValidator: RequestHandler[] = [
 ];
 
 export const getCategoryValidator: RequestHandler[] =[
-    check('id').isMongoId().withMessage('This Id Not Valid')
+    check('id').isMongoId().withMessage('This Id Not Valid'),
+    validatorMiddleware
 ]
 export const updateCategoryValidator: RequestHandler[] =[
     check('id').isMongoId().withMessage('This Id Not Valid'),
     check('name').optional().isLength({min:2, max:50}).withMessage('Length should be between 2 and 50 character'),
+    validatorMiddleware
 ]
 
 export const deleteCategoryValidator: RequestHandler[] =[
     check('id').isMongoId().withMessage('This Id Not Valid')
+    ,validatorMiddleware
 ]

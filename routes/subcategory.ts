@@ -16,6 +16,6 @@ subcategoryRoute.route('/:id')
     .get(getSubCategoryValidator,getSubCategory)
     .put(updateSubCategoryValidator,updateSubCategory)
     .delete(deleteSubCategoryValidator,deleteSubCategory)
-
+    
 
 export default subcategoryRoute;

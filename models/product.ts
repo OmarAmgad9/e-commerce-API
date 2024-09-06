@@ -19,4 +19,11 @@ const productSchema: Schema = new Schema<Product>({
     timestamps: true
 })
 
+
+productSchema.pre<Product>(/^find/, function(next){
+    // this.populate({path: 'category', select: 'name'}),
+    this.populate({ path: 'subcategory', select: 'name' });
+    next();
+});
+
 export default model<Product>('products', productSchema)
