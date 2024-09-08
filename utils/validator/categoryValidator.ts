@@ -1,10 +1,11 @@
 import { RequestHandler } from "express";
 import { check } from "express-validator";
-import validatorMiddleware from "../../middlewares/validatorMiddlewar";
+import validatorMiddleware from "../../middlewares/validatorMiddleware";
 import categoriesModel from "../../models/categoriesModel";
 
 
-export const createSubCategoryValidator: RequestHandler[] = [
+
+export const createCategoryValidator: RequestHandler[] = [
     check('name').notEmpty().withMessage('Should Enter Name For Category')
     .isLength({min:2, max:50}).withMessage('Length Of Name Should be between 2 and 50 character')
     .custom(async(value:string)=>{
@@ -14,24 +15,20 @@ export const createSubCategoryValidator: RequestHandler[] = [
         }
         return true;
     }),
-    check('category').notEmpty().withMessage('invalid category id')
-    .isMongoId().withMessage('Invalid  id'),
     validatorMiddleware
 ];
 
-export const getSubCategoryValidator: RequestHandler[] =[
+export const getCategoryValidator: RequestHandler[] =[
     check('id').isMongoId().withMessage('This Id Not Valid'),
     validatorMiddleware
 ]
-export const updateSubCategoryValidator: RequestHandler[] =[
+export const updateCategoryValidator: RequestHandler[] =[
     check('id').isMongoId().withMessage('This Id Not Valid'),
     check('name').optional().isLength({min:2, max:50}).withMessage('Length should be between 2 and 50 character'),
-    check('category').optional().isMongoId().withMessage('invalid id'),
     validatorMiddleware
 ]
 
-export const deleteSubCategoryValidator: RequestHandler[] =[
+export const deleteCategoryValidator: RequestHandler[] =[
     check('id').isMongoId().withMessage('This Id Not Valid')
-    ,
-    validatorMiddleware
+    ,validatorMiddleware
 ]

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { getAllSubCategory, getSubCategory, updateSubCategory, deleteSubCategory, createSubCategory,filterSubcategories } from "../controllers/subcategories";
 import * as all from "../interfaces"
 
-import { createSubCategoryValidator, updateSubCategoryValidator,deleteSubCategoryValidator, getSubCategoryValidator } from "../utitls/validator/subCategoryValidator";
+import { createSubCategoryValidator, updateSubCategoryValidator,deleteSubCategoryValidator, getSubCategoryValidator } from "../utils/validator/subCategoryValidator";
 
 
 

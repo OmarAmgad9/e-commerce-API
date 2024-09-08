@@ -2,7 +2,7 @@ import { Router } from "express";
 import { getAllCategories, createCategories, getCategory, updatecategory, deletecategory } from "../controllers/categories";
 import subcategoryRoute from "./subcategory";
 import * as all from "../interfaces"
-import { createCategoryValidator, deleteCategoryValidator, getCategoryValidator, updateCategoryValidator } from "../utitls/validator/categoryValidator";
+import { createCategoryValidator, deleteCategoryValidator, getCategoryValidator, updateCategoryValidator } from "../utils/validator/categoryValidator";
 
 const categoriesRoute: Router = Router();
 

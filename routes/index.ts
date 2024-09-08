@@ -2,7 +2,7 @@ import { Application } from "express"
 import categoriesRoute from "./categories";
 import subcategoryRoute from "./subcategory";
 import globalError from "../middlewares/globalError";
-import ApiError from "../utitls/apiError";
+import ApiError from "../utils/apiError";
 import { Request, Response, NextFunction } from "express";
 import productRoute from "./product";
 

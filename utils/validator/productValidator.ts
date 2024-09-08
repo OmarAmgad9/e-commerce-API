@@ -2,7 +2,7 @@ import { Request, RequestHandler } from "express";
 import { check } from "express-validator";
 import categoriesModel from "../../models/categoriesModel";
 import subcategoryModel from "../../models/subcategoryModel";
-import validatorMiddleware from "../../middlewares/validatorMiddlewar";
+import validatorMiddleware from "../../middlewares/validatorMiddleware";
 
 
 export const createProductValidator: RequestHandler[] = [
