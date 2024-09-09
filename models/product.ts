@@ -21,7 +21,7 @@ const productSchema: Schema = new Schema<Product>({
 
 
 productSchema.pre<Product>(/^find/, function(next){
-    // this.populate({path: 'category', select: 'name'}),
+    this.populate({path: 'category', select: 'name'}),
     this.populate({ path: 'subcategory', select: 'name' });
     next();
 });

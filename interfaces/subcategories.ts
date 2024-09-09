@@ -7,5 +7,5 @@ import { Categories } from "./categories";
 export interface SubCategoryInterface extends Document{
     name: string;
     image: string;
-    categories: Categories;
+    category: Categories;
 }

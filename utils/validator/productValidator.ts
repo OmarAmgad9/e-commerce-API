@@ -37,7 +37,7 @@ export const createProductValidator: RequestHandler[] = [
         if(!sub_cat){
             throw new Error('SubCategory Not Found');
         }
-        if(sub_cat.categories.id.toString() != req.body.category){
+        if(sub_cat.category.id.toString() != req.body.category){
             throw new Error('Category Not Found');
         }
         return true;
@@ -85,7 +85,7 @@ export const updateProductValidator: RequestHandler[] = [
         if(!sub_cat){
             throw new Error('SubCategory Not Found');
         }
-        if(sub_cat.categories.id.toString() != req.body.category){
+        if(sub_cat.category.id.toString() != req.body.category){
             throw new Error('Category Not Found');
         }
         return true;
