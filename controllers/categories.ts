@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import asyncHandler from 'express-async-handler';
 import categoriesModel from "../models/categoriesModel";
 import { Categories } from "../interfaces/categories";
-import { createDoc, deleteOne, getAll, getOne, UpdateOne } from "./refactoryHandling";
+import { createDoc, deleteOne, getAll, getOne, UpdateOne } from "./refactorHandling";
 
 
 export const getAllCategories = getAll<Categories>(categoriesModel, 'categories');

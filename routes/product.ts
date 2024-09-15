@@ -11,6 +11,7 @@ const productRoute: Router = Router()
 productRoute.route('/')
     .get(getAllProduct)
     .post(uploadProductImages, resizeProductImages,createProductValidator,createProduct)
+    
 
 productRoute.route('/:id')
     .get(getProductValidator,getProduct)

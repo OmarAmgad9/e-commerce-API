@@ -1,6 +1,6 @@
 
 import { Users } from "../interfaces/users"
-import { getAll, createDoc, UpdateOne, deleteOne, getOne } from "./refactoryHandling"
+import { getAll, createDoc, UpdateOne, deleteOne, getOne } from "./refactorHandling"
 import usersModel from "../models/usersModel"
 import { uploadSingleImage } from "../middlewares/uploadImage"
 import asyncHandler from "express-async-handler";

@@ -18,13 +18,13 @@ export const createProductValidator: RequestHandler[] = [
         }
         return true
     }),
-    check('priceAfterDiscount').isFloat().withMessage('Enter Value Price')
-    .custom((value: number, {req})=>{
-        if(value < 0 || value > req.body.price){
-            throw new Error('Invalid price Discount')
-        }
-        return true
-    }),
+    // check('priceAfterDiscount').isFloat().withMessage('Enter Value Price')
+    // .custom((value: number, {req})=>{
+    //     if(value < 0 || value > req.body.price){
+    //         throw new Error('Invalid price Discount')
+    //     }
+    //     return true
+    // }),
     check('category').isMongoId().custom(async(value) => {
         const cat = await categoriesModel.findById(value);
         if(!cat){

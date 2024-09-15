@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import asyncHadler from "express-async-handler";
 import subcategoryModel from "../models/subcategoryModel";
-import { createDoc, deleteOne, getAll, getOne, UpdateOne } from "./refactoryHandling";
+import { createDoc, deleteOne, getAll, getOne, UpdateOne } from "./refactorHandling";
 import { SubCategoryInterface } from "../interfaces/subcategories";
 import { FilterData } from "../interfaces/filterData";
 

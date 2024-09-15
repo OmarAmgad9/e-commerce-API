@@ -1,10 +1,9 @@
 import { Request } from "express"
 import multer from "multer"
-import ApiErrors from '../utils/apiError'
+import ApiErrors from "../utils/apiError"
 import { FileFields } from "../interfaces/uploadFiles"
 
 const uploadOption = (): multer.Multer => {
-  
   const multerStorage = multer.memoryStorage()
 
   function multerFilter(req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) {

@@ -1,5 +1,5 @@
 import { Product } from "../interfaces/product";
-import { getAll, createDoc, getOne, UpdateOne, deleteOne } from "./refactoryHandling";
+import { getAll, createDoc, getOne, UpdateOne, deleteOne } from "./refactorHandling";
 import  productSchema  from "../models/product"
 
 import multer from "multer";
@@ -11,7 +11,15 @@ import {uploadMultiImages} from "../middlewares/uploadImage"
 
 export const uploadProductImages = uploadMultiImages([{ name: 'cover', maxCount: 1 }, { name: 'images', maxCount: 5 }])
 export const resizeProductImages = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-
+    // if (req.file) {
+    //   const imgName = `product-${Date.now()}.webp`
+    //   await sharp(req.file.buffer)
+    //     .resize(500, 500)
+    //     .toFormat('webp')
+    //     .webp({ quality: 95 })
+    //     .toFile(`uploads/products/${imgName}`)
+    //   req.body.cover = imgName;
+    // }
     if (req.files) {
         if (req.files.cover) {
         const imgName = `product-${Date.now()}-cover.webp`
