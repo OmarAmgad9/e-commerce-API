@@ -6,6 +6,7 @@ import { uploadSingleImage } from "../middlewares/uploadImage"
 import asyncHandler from "express-async-handler";
 import sharp from "sharp";
 import { Request, Response, NextFunction } from "express";
+import bcrypt from 'bcryptjs'
 
 export const uploadUserImage = uploadSingleImage('image');
 export const resizeUserImage = asyncHandler(async(req:Request, res:Response, next:NextFunction)=>{
@@ -21,7 +22,6 @@ export const resizeUserImage = asyncHandler(async(req:Request, res:Response, nex
 });
 
 
-
 export const getAllUsers = getAll<Users>(usersModel, 'users')
 export const getUser = getOne<Users>(usersModel)
 export const createUser = createDoc<Users>(usersModel);
@@ -35,3 +35,15 @@ export const updateUser = asyncHandler(async(req:Request, res:Response, next: Ne
     },{new: true});
     res.status(200).json({data: user});
 });
+
+export const changeUserPassword = asyncHandler(async(req:Request, res:Response, next:NextFunction)=>{
+    const user = await usersModel.findByIdAndUpdate(
+        req.params.id,
+        {
+            password: bcrypt.hash(req.body.password, 15),
+            passwordChangedAt: Date.now()
+        },
+        {new:true}
+    )
+});
+

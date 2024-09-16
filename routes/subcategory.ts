@@ -3,6 +3,7 @@ import { getAllSubCategory, getSubCategory, updateSubCategory, deleteSubCategory
 import * as all from "../interfaces"
 
 import { createSubCategoryValidator, updateSubCategoryValidator,deleteSubCategoryValidator, getSubCategoryValidator } from "../utils/validator/subCategoryValidator";
+import { allowedTo, checkActiveUser, protectRoutes } from "../controllers/auth";
 
 
 
@@ -10,12 +11,12 @@ const subcategoryRoute: Router = Router({mergeParams:true});
 
 subcategoryRoute.route('/')
     .get(filterSubcategories,getAllSubCategory)
-    .post(createSubCategoryValidator,createSubCategory)
+    .post(protectRoutes, checkActiveUser,allowedTo('manager', 'admin'),createSubCategoryValidator,createSubCategory)
 
 subcategoryRoute.route('/:id')
     .get(getSubCategoryValidator,getSubCategory)
-    .put(updateSubCategoryValidator,updateSubCategory)
-    .delete(deleteSubCategoryValidator,deleteSubCategory)
+    .put(protectRoutes, checkActiveUser,allowedTo('manager', 'admin'),updateSubCategoryValidator,updateSubCategory)
+    .delete(protectRoutes, checkActiveUser,allowedTo('manager', 'admin'),deleteSubCategoryValidator,deleteSubCategory)
     
 
 export default subcategoryRoute;
