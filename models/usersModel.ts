@@ -10,6 +10,13 @@ const UsersSchema:Schema = new Schema<Users>({
     password: {type:String, required:true},
     role:{type:String, enum:['manager', 'admin', 'user'], default:'user'},
     image: String,
+    wishlist:[{type: Schema.Types.ObjectId,  ref: 'products'}],
+    address:[{
+        street: String,
+        city: String,
+        state: String,
+        postalCode:String,
+    }],
     active: {type:Boolean, default:true},
     phone:{type:String},
     restCode: String,

@@ -7,7 +7,7 @@ import Jwt  from "jsonwebtoken";
 import { createRestToken, createToken } from "../utils/createToken";
 import { Users } from "../interfaces/users";
 import sendMail from "../utils/sendMail";
-import { send } from "process";
+
 
 // signup
 export const signUp = asyncHandler(async(req:Request, res:Response, next: NextFunction)=>{
