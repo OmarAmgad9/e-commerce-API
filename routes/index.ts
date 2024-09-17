@@ -11,6 +11,8 @@ import wishlistRoute from "./wishlistRoute";
 import addressRoute from "./addressRoute";
 import couponsRoute from "./couponsRoute";
 import reviewRoute from "./reviewRoute";
+import cartRoute from "./cartRoute";
+import ordersRoute from "./orderRoute";
 
 
 
@@ -20,6 +22,8 @@ const mountRoute = (app:Application)=>{
     app.use('/api/v1/product', productRoute);
     app.use('/api/v1/users', UsersRoute);
     app.use('/api/v1/auth', authRoute );
+    app.use('/api/v1/carts', cartRoute);
+    app.use('/api/v1/orders', ordersRoute);
     app.use('/api/v1/address', addressRoute );
     app.use('/api/v1/review', reviewRoute );
     app.use('/api/v1/wishlist', wishlistRoute);
