@@ -59,21 +59,29 @@
             <div class="col-lg-12">
                 <div class="pagination">
                     <ul>
-                        <li>
-                            <a href="#">1</a>
+                      
+                    @if(pagination.currentPage! > 1 ){
+                      <li>
+                        <a >< </a>
+                      </li>
+                    }
+                    @if(pagination.prev! >= 1 ){
+                    <li (click)="changePage(pagination.prev!)">
+                      <a >{{pagination.prev}}</a>
+                    </li>
+                  }
+                        <li  class="active" (click)="changePage(pagination.currentPage!)">
+                            <a >{{pagination.currentPage}}</a>
                         </li>
-                        <li class="active">
-                            <a href="#">2</a>
+                        <!-- @if(pagination.next === pagination.totalPage){ -->
+                          <li (click)="changePage(pagination.next!)" >
+                              <a >{{pagination.next}}</a>
+                          </li>
+                        <li >
+                            <!-- <a href="#">></a> -->
+                            <a  (click)="changePage(pagination.next!)" >></a>
                         </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">></a>
-                        </li>
+                      <!-- } -->
                     </ul>
                 </div>
             </div>
@@ -81,3 +89,5 @@
     </div>
 </section>
 <!-- ***** Products Area Ends ***** -->
+
+

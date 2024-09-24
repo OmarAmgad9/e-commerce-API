@@ -40,7 +40,6 @@ export class HeaderComponent{
         console.log(err)
       }
     })
-
   }
   logout(){
     this._AuthService.logout();

@@ -25,7 +25,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   loadProducts(){
     this.subscription = this._productService.getAllProducts(this.limit,this.page,this.sort,this.search).subscribe({
       next:(value)=> {
-        this.products=value.data
+        this.products=value.data;
+        this.pagination = value.pagination
       },
       error:(error)=>{}
     })
@@ -36,5 +37,13 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
 
+  }
+  changePage(page:number){
+    this.page=page;
+    this.loadProducts()
+  }
+  searchData(search:string){
+    this.search=search;
+    this.loadProducts();
   }
 }
