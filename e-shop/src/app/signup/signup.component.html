@@ -1,0 +1,67 @@
+<div class="content-register " id="media-query">
+  <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
+      <h1 class="register">SignUp</h1>
+      <div class="mb-3">
+          <label for="username" class="form-label" >Username</label>
+          <input type="text" class="form-control" id="username" formControlName="name">
+          @if(signupForm.get('name')?.touched){
+            @if(signupForm.get('name')?.errors?.['required'] ){
+            <p class="text-danger ">name Required</p>
+            }
+          }
+      </div>
+      <div class="mb-3">
+          <label for="Email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="Email" formControlName="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          @if(signupForm.get('email')?.touched){
+            @if(signupForm.get('email')?.errors?.['required'] ){
+            <p class="text-danger ">Email Required</p>
+            }
+            @if(signupForm.get('email')?.errors?.['email']){
+              <p class="text-danger ">Invalid Email</p>
+            }
+          }
+      </div>
+      <div class="mb-3">
+          <label for="Phone" class="form-label">Phone Number</label>
+          <input type="text" class="form-control" id="Phone" formControlName="phone">
+          @if(signupForm.get('phone')?.touched){
+            @if(signupForm.get('phone')?.errors?.['required'] ){
+            <p class="text-danger ">phone Required</p>
+            }
+          }
+      </div>
+      <div class="passwords" id="media-passwords">
+          <div class="mb-3">
+              <label for="Password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="Password" formControlName="password">
+              @if(signupForm.get('password')?.touched){
+                @if(signupForm.get('password')?.errors?.['required'] ){
+                <p class="text-danger ">Password Required</p>
+                }
+                @if(signupForm.get('password')?.errors?.['minlength'] || signupForm.get('password')?.errors?.['maxlength']){
+                  <p class="text-danger ">Password must be at least 8 characters</p>
+                }
+              }
+          </div>
+          <div class="mb-3">
+              <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="ConfirmPassword" formControlName="confirmPassword">
+              @if(signupForm.get('confirmPassword')?.touched){
+                @if(signupForm.get('confirmPassword')?.errors?.['required'] ){
+                <p class="text-danger ">confirmPassword Required</p>
+                }
+                @if(signupForm.get('confirmPassword')?.errors?.['minlength'] || signupForm.get('confirmPassword')?.errors?.['maxlength']){
+                  <p class="text-danger ">Confirm Password must be at least 8 characters</p>
+                }
+              }
+            </div>
+          </div>
+          <!-- <div class="mb-3">
+            <label for="Address" class="form-label">Your Address</label>
+            <input type="text" class="form-control" id="Address">
+          </div> -->
+        <button type="submit" [disabled]="signupForm.invalid" class="btn btn-primary submit">Submit</button>
+  </form>
+</div>

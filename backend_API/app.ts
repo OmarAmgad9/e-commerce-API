@@ -10,15 +10,25 @@ import hpp from 'hpp';
 import helmet from 'helmet';
 import { I18n } from 'i18n';
 import path from 'path';
+import cookieParser from 'cookie-parser'
+import csurf from 'csurf'
 
 const app: express.Application = express()
 app.use(express.json({limit: '3kb'}));
 app.use(cors({
     origin: ['http://localhost:4200'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-API-KEY'],
     credentials:true
 }));
+app.use(cookieParser());
+// app.use(csurf({
+//     cookie:{
+//         httpOnly: true,
+//         secure:true,
+//         sameSite: 'strict'
+//     }
+// }))
 app.use(express.static('uploads'));
 dotenv.config()
 app.use(compression())

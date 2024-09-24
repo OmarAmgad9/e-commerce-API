@@ -10,7 +10,7 @@ import { allowedTo, checkActiveUser, protectRoutes } from "../controllers/auth";
 const productRoute: Router = Router()
 
 productRoute.route('/')
-    .get(protectRoutes,getAllProduct)
+    .get(getAllProduct)
     .post(protectRoutes, checkActiveUser,allowedTo('manager', 'admin'),uploadProductImages, resizeProductImages,createProductValidator,createProduct)
     
 

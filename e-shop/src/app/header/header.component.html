@@ -1,0 +1,86 @@
+a<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="#" class="logo">
+                        <img src="images/logo.png" alt="Logo">
+                      </a>
+
+
+
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+
+                  <ul class="nav">
+                    <!-- edit responsive -->
+
+
+                    <li>
+                        <form>
+                          <input type="text" id="search" class="form-inline form-search" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <button class="btn-search" type="submit" >
+                            <i class="fas fa-search"></i>
+                          </button>
+                        </form>
+                      </li>
+
+
+
+                        <li class="scroll-to-section "><a href="#top" routerLink="/home" class="active">Home</a></li>
+
+                        <li class="submenu">
+                          <a href="javascript:;" >Category</a>
+                          <ul>
+                              <li><a href="about.html">About Us</a></li>
+                              <li><a href="products.html">Products</a></li>
+                              <li><a href="single-product.html">Single Product</a></li>
+                              <li><a href="contact.html">Contact Us</a></li>
+                          </ul>
+                      </li>
+
+
+                        <li class="scroll-to-section"><a href="" routerLink="/product" routerLinkActive="router-link-active">Product</a></li>
+                        <!-- <li class="scroll-to-section"><a href="#kids">Kid's</a></li> -->
+                        <!-- <li class="submenu">
+                            <a href="javascript:;">Pages</a>
+                            <ul>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="products.html">Products</a></li>
+                                <li><a href="single-product.html">Single Product</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </li> -->
+
+                        <li class="submenu">
+                          @if(!isLogin){
+                            <a href="javascript:;" routerLink="login" routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>Login
+                            </a>
+                          }@else {
+                            <a href="javascript:;"><i class="fa-solid fa-user"></i> {{userName}}
+                            </a>
+                            }
+                            <ul>
+                              @if(!isLogin){
+                                <li><a  routerLink="/signup" routerLinkActive="router-link-active">Sign Up</a></li>
+                              }@else {
+                                <li><a href="#">Profile</a></li>
+                                <li><a  (click)="logout()">Logout</a></li>
+                              }
+                                <!-- <li><a href="#">Features Page 3</a></li> -->
+                                <!-- <li><a rel="nofollow" href="#" target="_blank">Template Page 4</a></li> -->
+                              </ul>
+
+                        <li class="scroll-to-section"><i class="fa-solid fa-cart-shopping"></i></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
