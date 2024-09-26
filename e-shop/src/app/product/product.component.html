@@ -1,12 +1,14 @@
   <!-- ***** Main Banner Area Start ***** -->
-  <div class="page-heading" id="top">
+  <div class="page-heading" id="top" >
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="inner-content">
+              <img src="images/hero.png" class="img-fluid" alt="Banner  Image">
+                <!-- <div class="inner-content"> -->
+
                     <!-- <h2>Check Our Products</h2>
                     <span >Awesome &amp; Creative HTML CSS layout by TemplateMo</span> -->
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -39,7 +41,7 @@
                                 <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
-                        <img  [src]="imagDomain+prod.images" alt="Product Image">
+                        <img class="img-fluid" [src]="imagDomain+prod.images" alt="Product Image">
                     </div>
                     <div class="down-content">
                         <h4>{{prod.name}}</h4>
@@ -56,10 +58,11 @@
             </div>
           }
 
+          @if(pagination.currentPage! > 1){
             <div class="col-lg-12">
                 <div class="pagination">
                     <ul>
-                      
+
                     @if(pagination.currentPage! > 1 ){
                       <li>
                         <a >< </a>
@@ -73,7 +76,7 @@
                         <li  class="active" (click)="changePage(pagination.currentPage!)">
                             <a >{{pagination.currentPage}}</a>
                         </li>
-                        <!-- @if(pagination.next === pagination.totalPage){ -->
+                        @if(pagination.next === pagination.totalPage){
                           <li (click)="changePage(pagination.next!)" >
                               <a >{{pagination.next}}</a>
                           </li>
@@ -81,10 +84,11 @@
                             <!-- <a href="#">></a> -->
                             <a  (click)="changePage(pagination.next!)" >></a>
                         </li>
-                      <!-- } -->
+                      }
                     </ul>
                 </div>
             </div>
+          }
         </div>
     </div>
 </section>

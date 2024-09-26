@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { error } from 'jquery';
 import { Product } from '../interface/product';
 import { Pagination } from '../interface/pagination';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -11,7 +12,7 @@ import { Pagination } from '../interface/pagination';
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
-export class ProductComponent implements OnInit, OnDestroy {
+export class ProductComponent implements OnInit,OnDestroy {
   subscription:any;
   products: Product[] = []
   imagDomain:string='';
@@ -20,7 +21,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   page:number=1;
   sort:string='-createdAt';
   search:string='';
-  constructor(private _productService: ProductsService){}
+  @Input() querySearch: string='';
+  constructor(private _productService: ProductsService, private _route: ActivatedRoute, private cdf: ChangeDetectorRef){}
 
   loadProducts(){
     this.subscription = this._productService.getAllProducts(this.limit,this.page,this.sort,this.search).subscribe({
@@ -34,16 +36,20 @@ export class ProductComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.imagDomain=this._productService.productImage;
     this.loadProducts();
+    this._route.queryParams.subscribe(params=>{
+      this.querySearch=params['q'];
+      this.searchData(this.querySearch)
+    })
   }
-  ngOnDestroy(): void {
 
+  ngOnDestroy(): void {
   }
   changePage(page:number){
     this.page=page;
     this.loadProducts()
   }
   searchData(search:string){
-    this.search=search;
+    this.search = search;
     this.loadProducts();
   }
 }

@@ -1,4 +1,4 @@
-a<header class="header-area header-sticky">
+<header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -18,8 +18,8 @@ a<header class="header-area header-sticky">
 
 
                     <li>
-                        <form>
-                          <input type="text" id="search"  #search class="form-inline form-search" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <form method="get" [formGroup]="formSearch" (ngSubmit)="searchMethod(formSearch)" >
+                          <input type="text" id="search" formControlName="search" name="q" #search class="form-inline form-search"  placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <button class="btn-search" type="submit" >
                             <i class="fas fa-search"></i>
                           </button>
@@ -28,10 +28,10 @@ a<header class="header-area header-sticky">
 
 
 
-                        <li class="scroll-to-section "><a href="#top" routerLink="/home" class="active">Home</a></li>
+                        <li class="scroll-to-section "><a  routerLink="/home" routerLinkActive="active" >Home</a></li>
 
                         <li class="submenu">
-                          <a href="javascript:;" >Category</a>
+                          <a href="javascript:;" routerLinkActive="active" >Category</a>
                           <ul>
                               <li><a href="about.html">About Us</a></li>
                               <li><a href="products.html">Products</a></li>
@@ -41,7 +41,7 @@ a<header class="header-area header-sticky">
                       </li>
 
 
-                        <li class="scroll-to-section"><a href="" routerLink="/product" routerLinkActive="router-link-active">Product</a></li>
+                        <li class="scroll-to-section"><a  routerLink="/product" routerLinkActive="active">Product</a></li>
                         <!-- <li class="scroll-to-section"><a href="#kids">Kid's</a></li> -->
                         <!-- <li class="submenu">
                             <a href="javascript:;">Pages</a>
@@ -55,7 +55,7 @@ a<header class="header-area header-sticky">
 
                         <li class="submenu">
                           @if(!isLogin){
-                            <a href="javascript:;" routerLink="login" routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i>Login
+                            <a href="javascript:;" routerLink="login" routerLinkActive="active"><i class="fa-solid fa-user"></i>Login
                             </a>
                           }@else {
                             <a href="javascript:;"><i class="fa-solid fa-user"></i> {{userName}}
@@ -63,7 +63,7 @@ a<header class="header-area header-sticky">
                             }
                             <ul>
                               @if(!isLogin){
-                                <li><a  routerLink="/signup" routerLinkActive="router-link-active">Sign Up</a></li>
+                                <li><a  routerLink="/signup" routerLinkActive="active">Sign Up</a></li>
                               }@else {
                                 <li><a href="#">Profile</a></li>
                                 <li><a  (click)="logout()">Logout</a></li>

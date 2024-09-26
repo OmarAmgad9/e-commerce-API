@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, Input, AfterViewChecked, OnInit, OnChanges } from '@angular/core';
+import { Component, AfterViewInit, Input} from '@angular/core';
 
 declare var $: any;
 // import * as $ from 'jquery';

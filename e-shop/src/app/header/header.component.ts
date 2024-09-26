@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Query } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ReactiveFormsModule, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent{
+export class HeaderComponent {
+  formSearch = new FormGroup({
+    search: new FormControl(null, [Validators.required])
+  })
   isLogin:boolean = false;
   userName: string = '';
   name:string = ''
   subscription: any;
-  constructor(private _AuthService: AuthService){
+  constructor(private _AuthService: AuthService, private router:Router){
     this._AuthService.currentUser.subscribe({
       next: () => {
         if(this._AuthService.currentUser.getValue() !== null){
@@ -32,16 +36,19 @@ export class HeaderComponent{
       },
     })
   }
+  searchMethod(searchData:FormGroup){
+  this.router.navigate(['/product'], { queryParams: { q: searchData.value.search } })
+  }
   getUserName(userId:string){
     this.subscription = this._AuthService.getUserName(userId).subscribe({
       next: (res:any) => {
         this.userName = res.data.name;
       },error(err){
-        console.log(err)
       }
     })
   }
   logout(){
     this._AuthService.logout();
   }
+
 }

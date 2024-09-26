@@ -20,16 +20,13 @@ export class BestSellerComponent implements OnInit {
     this.subscription = this._ProductService.getAllProducts(16,1,'-sold', '').subscribe({
       next: (res) => {
         this.products = res.data;
-        console.log(this.products)
       },
       error:(err)=>{
-        console.log(err)
       }
     })
   }
   ngOnInit(): void {
     this.imgDomain = this._ProductService.productImage;
-    console.log(this.imgDomain)
     this.loadProduct();
   }
 
