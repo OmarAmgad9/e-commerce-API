@@ -37,7 +37,7 @@ export class ProductsService {
     }
   }
   getProduct(productId:String):Observable<any>{
-    return this._HttpClient.get(`${this.baseUrl}${this.productsRoute}${productId}`,{
+    return this._HttpClient.get(`${this.baseUrl}${this.productsRoute}/${productId}`,{
       headers:{
         "X-API-KEY": `${this.apiKey}`
       },

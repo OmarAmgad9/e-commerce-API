@@ -23,21 +23,46 @@ import Features from '../utils/feature';
 //         })
 //     });
 
-export const getAll = <modelType>(model: Model<any>, modelName: string) =>
-    asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        let filter_Data: any = {};
-        if (req.filterData) {
-            filter_Data = req.filterData;
-        }
-        
-        const documentCount = await model.find().countDocuments()
-        const feature: Features = new Features(model.find(filter_Data), req.query).sort().limitFields().search(modelName).pagination(documentCount)
-        // const documents: modelType[] = await model.find(filterData)
-        const { mongooseQuery, paginationResult} = feature;
-        const documents: modelType[] = await mongooseQuery;
-        res.status(200).json({ pagination: paginationResult ,data: documents })
-    });
+// export const getAll = <modelType>(model: Model<any>, modelName: string) =>
+//     asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+//         let filterData: any = {};
+//         let searchLength:number =0;
+//         if (req.filterData) {
+//             filterData = req.filterData;
+//         }
+//         if(req.query){
+//             const searchResult:Features = new Features(model.find(filterData), req.query);
+//             const searchData:modelType[] = await searchResult.mongooseQuery;
+//             searchLength = searchData.length;
+//         }
+//         const documentCount =  searchLength|| await model.find().countDocuments()
+//         const feature: Features = new Features(model.find(filterData), req.query).sort().limitFields().search(modelName).pagination(documentCount)
+//         // const documents: modelType[] = await model.find(filterData)
+//         const { mongooseQuery, paginationResult} = feature;
+//         const documents: modelType[] = await mongooseQuery;
+//         res.status(200).json({ length:documents.length ,pagination: paginationResult ,data: documents })
+//     });
 
+
+
+    export const getAll = <modelType>(model: Model<any>, modelName: string) =>
+        asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+            let filterData: any = {};
+            let searchLength: number = 0;
+            if (req.filterData) {
+                filterData = req.filterData
+            }
+            if (req.query) {
+                const searchResult: Features = new Features(model.find(filterData), req.query).filter().search(modelName)
+                const searchData: modelType[] = await searchResult.mongooseQuery;
+                searchLength = searchData.length;
+            }
+            const documentsCount: number = searchLength || await model.find(filterData).countDocuments()
+            const features: Features = new Features(model.find(filterData), req.query).filter().sort().limitFields().search(modelName).pagination(documentsCount);
+            const { mongooseQuery, paginationResult } = features
+            const documents: modelType[] = await mongooseQuery;
+            res.status(200).json({ length: documents.length, pagination: paginationResult, data: documents })
+        });
 
 
 export const createDoc = <modelType>(model:Model<any>) =>

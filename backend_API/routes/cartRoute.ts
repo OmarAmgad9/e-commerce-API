@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { allowedTo, checkActiveUser, protectRoutes } from "../controllers/auth";
-import { addProductToCart, applyCoupon, deleteUserCart, getUserCart, removeProductCart, updateProductQuantity } from "../controllers/carts";
+import { addProductToCart, applyCoupon, deleteUserCart, getUserCart, removeProductFromCart, updateProductQuantity } from "../controllers/carts";
 import { addProductToCartValidator, removeProductFromCartValidator, updateProductQuantityValidator } from "../utils/validator/cartValidator";
 
 const cartRoute: Router = Router()
@@ -12,6 +12,6 @@ cartRoute.route('/')
 cartRoute.put('/applyCoupon', applyCoupon)
 cartRoute.route('/:itemId')
     .put(updateProductQuantityValidator, updateProductQuantity)
-    .delete(removeProductFromCartValidator, removeProductCart);
+    .delete(removeProductFromCartValidator, removeProductFromCart);
 
 export default cartRoute;

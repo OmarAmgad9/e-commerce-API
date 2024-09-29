@@ -1,0 +1,68 @@
+
+@if(orders.length>0){
+  <div class="container">
+    <h2 class="text-center my-5">My Orders</h2>
+    <hr class="my-3">
+    <table class="w-100">
+      <thead>
+        <tr class="border-bottom">
+          <th>products</th>
+          <th>Delivered</th>
+          <th>Paid</th>
+          <th>Payment Method</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(order of orders; track order._id){
+        <tr class="m-5 border-bottom">
+          <td>
+            @for(item of order.items; track item._id){
+            <img class="mx-3" width="50px" [src]="productImage+item?.product?.cover"
+              alt="product Image">{{item?.product?.name}} | Quantity {{item.quantity}}
+            <br>
+            <br>
+            }
+          </td>
+          <td>@if(order.isDelivered){yes}@else{No}</td>
+          <td>@if(order.isPaid){yes}@else{No}</td>
+          <td>{{order.paymentMethod}}</td>
+          <td>{{order.totalPrice}} EGP</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+
+  @if(pagination.totalPage! > 1){
+    <div class="col-lg-12">
+        <div class="pagination">
+            <ul>
+            @if(pagination.currentPage! > 1 ){
+              <li>
+                <a >< </a>
+              </li>
+            }
+            @if(pagination.prev! >= 1 ){
+            <li (click)="changePage(pagination.prev!)">
+              <a >{{pagination.prev}}</a>
+            </li>
+          }
+                <li  class="active" (click)="changePage(pagination.currentPage!)">
+                    <a >{{pagination.currentPage}}</a>
+                </li>
+                @if(pagination.next ){
+                  <li (click)="changePage(pagination.next!)" >
+                      <a >{{pagination.next}}</a>
+                  </li>
+                <li >
+                    <!-- <a href="#">></a> -->
+                    <a  (click)="changePage(pagination.next!)" >></a>
+                </li>
+              }
+            </ul>
+        </div>
+    </div>
+  }
+}

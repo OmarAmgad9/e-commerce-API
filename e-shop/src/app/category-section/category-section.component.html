@@ -1,0 +1,73 @@
+ <!-- ***** Main Banner Area Start ***** -->
+ <!-- <div class="main-banner" id="top">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-6">
+              <div class="left-content">
+                  <div class="thumb">
+                      <div class="inner-content">
+                          <h4>We Are </h4>
+                          <span>Awesome, clean &amp; creative HTML5 Template</span>
+                          <div class="main-border-button">
+                              <a href="#">Purchase Now!</a>
+                          </div>
+                      </div>
+                      <img src="images/left-banner-image.jpg" alt="" alt="logo">
+                  </div>
+              </div>
+          </div>
+         @for(cat of categories; track cat._id){
+          <div class="col-lg-6">
+              <div class="right-content">
+                  <div class="row">
+                      <div class="col-lg-6">
+                          <div class="right-first-image">
+                              <div class="thumb">
+                                  <div class="inner-content">
+                                      <h4>{{cat.name}}</h4>
+                                      <span>Best Clothes For Women</span>
+                                  </div>
+                                  <div class="hover-content">
+                                      <div class="inner">
+                                          <h4>{{cat.name}}</h4>
+                                          <p>Lorem ipsum dolor sit .</p>
+                                          <div class="main-border-button">
+                                              <a href="#">Discover More</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!-- <img [src]="imgDomain+cat.image" alt="logo"> -->
+                              <!--</div>
+                          </div>
+                      </div>
+
+
+
+                  </div>
+              </div>
+          </div>
+        }
+      </div>
+  </div>
+</div> -->
+<!-- ***** Main Banner Area End ***** -->
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-6 fw-bold">
+  <a class="navbar-brand submenu" href="#">Categories</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      @for(cat of categories; track cat._id){
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/categories',cat._id]" routerLinkActive="router-link-active" >{{cat.name}} <span class="sr-only">(current)</span></a>
+      </li>
+      }
+    </ul>
+  </div>
+</nav>

@@ -25,13 +25,13 @@
                                       <ul>
                                           <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
                                           <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                          <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                      </ul>
+                                          <li><a class="hover" (click)="addToCart(prod._id?.toString()!)"><i class="fa fa-shopping-cart"></i></a></li>
+                                        </ul>
                                   </div>
-                                  <img [src]="domain+prod.cover" alt="Product Image">
+                                  <img [src]="domain+prod.cover" class="img-fluid prod-img" alt="Product Image">
                               </div>
                               <div class="down-content">
-                                  <h5>{{prod.name}}</h5>
+                                  <h5 [routerLink]="['/product',prod._id]">{{prod.name}}</h5>
                                   <span>EGP {{prod.price}}</span>
                                   <ul class="stars">
                                       <li><i class="fa fa-star"></i></li>

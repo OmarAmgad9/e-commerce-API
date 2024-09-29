@@ -30,7 +30,7 @@
 
                         <li class="scroll-to-section "><a  routerLink="/home" routerLinkActive="active" >Home</a></li>
 
-                        <li class="submenu">
+                        <!-- <li class="submenu">
                           <a href="javascript:;" routerLinkActive="active" >Category</a>
                           <ul>
                               <li><a href="about.html">About Us</a></li>
@@ -38,7 +38,7 @@
                               <li><a href="single-product.html">Single Product</a></li>
                               <li><a href="contact.html">Contact Us</a></li>
                           </ul>
-                      </li>
+                      </li> -->
 
 
                         <li class="scroll-to-section"><a  routerLink="/product" routerLinkActive="active">Product</a></li>
@@ -65,14 +65,17 @@
                               @if(!isLogin){
                                 <li><a  routerLink="/signup" routerLinkActive="active">Sign Up</a></li>
                               }@else {
-                                <li><a href="#">Profile</a></li>
+                                <li><a [routerLink]="['/profile']">Profile</a></li>
+                                <li><a [routerLink]="['/myOrders']">Your Order</a></li>
                                 <li><a  (click)="logout()">Logout</a></li>
                               }
                                 <!-- <li><a href="#">Features Page 3</a></li> -->
                                 <!-- <li><a rel="nofollow" href="#" target="_blank">Template Page 4</a></li> -->
                               </ul>
 
-                        <li class="scroll-to-section"><i class="fa-solid fa-cart-shopping"></i></li>
+                        <li class="scroll-to-section cursor" [routerLink]="['cart']"><i class="fa-solid fa-cart-shopping"></i>
+                          <span class="cart-count">{{length}}</span>
+                          </li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>

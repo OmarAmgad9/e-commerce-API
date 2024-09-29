@@ -25,7 +25,9 @@
   font-weight: 700;
   margin-bottom: 8px;
 }
-
+.hover:hover{
+  cursor: pointer;
+}
 #men .item .down-content span {
   font-size: 18px;
   color: #a1a1a1;
@@ -156,3 +158,9 @@
   border :1px solid #2a2a2a;
 }
 
+.prod-img{
+  max-width: 300px;
+  width: 100%;
+  max-height: 300px;
+  height: 100%;
+}

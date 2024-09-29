@@ -63,18 +63,15 @@ export const addProductToCart = asyncHandler(async(req:Request, res:Response, ne
 // calc total price
 // save cart
 
-export const removeProductCart = asyncHandler(async(req:Request, res:Response, next:NextFunction)=>{
-    const cart: any = await cartsModel.findOneAndUpdate({user: req.user?._id},{
-        $pull: {items: {_id:req.params.itemsId}}
-    },{new:true});
+export const removeProductFromCart = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    const cart: any = await cartsModel.findOneAndUpdate({ user: req.user?._id }, {
+        $pull: { items: { _id: req.params.itemId } }
+    }, { new: true });
     calcTotalPrice(cart);
     await cart.save();
-    res.status(200).json({
-        length: cart.items.length,
-        data: cart
-    });
-});
-
+    res.status(200).json({ length: cart.items.length, data: cart });
+  });
+  
 export const updateProductQuantity = asyncHandler(async(req:Request, res:Response, next:NextFunction)=>{
     const cart: any = await cartsModel.findOne({user:req.user?._id});
     const productIndex:number = cart.items.findIndex((item:CartItems)=>item._id!.toString() === req.params.itemId.toString());

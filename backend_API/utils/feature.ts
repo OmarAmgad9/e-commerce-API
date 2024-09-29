@@ -8,18 +8,33 @@ class Features{
     public paginationResult: PaginationQuery | undefined;
     constructor(public mongooseQuery:Query<any[], any>, private queryString: QueryString){
     }
-    filter(){
-        const queryStringObj = {...this.queryString}
+    // filter(){
+    //     const queryStringObj = {...this.queryString}
+    //     const executedFields: string[] = ['page', 'limit', 'sort', 'fields', 'search'];
+    //     executedFields.forEach((fields:string):void => {
+    //         delete queryStringObj[fields]
+    //     });
+    //     let queryStr: string = JSON.stringify(queryStringObj);
+    //     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match=>`$${match}`)
+    //     this.mongooseQuery = this.mongooseQuery.find(JSON.parse(queryStr));
+    //     return this;
+    // }
+
+    filter() {
+        const queryStringObj = { ...this.queryString }
         const executedFields: string[] = ['page', 'limit', 'sort', 'fields', 'search'];
-        executedFields.forEach((fields:string):void => {
-            delete queryStringObj[fields]
+        executedFields.forEach((field: string): void => {
+          delete queryStringObj[field]
         });
         let queryStr: string = JSON.stringify(queryStringObj);
-        queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match=>`$${match}`)
+        queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
         this.mongooseQuery = this.mongooseQuery.find(JSON.parse(queryStr));
         return this;
-    
-    }
+      }
+
+
+
+
     sort(){
         if(this.queryString.sort){
             const sortBy: string = this.queryString.sort.split(',').join(' ');

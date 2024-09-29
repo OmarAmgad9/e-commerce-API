@@ -1,0 +1,70 @@
+<div class="main-container">
+  <div class="big-container">
+    @for(item of productCart?.items; track item._id){
+      <div id="cardContainer" class="card-content" id="card-container">
+          <div class="card">
+            @if(item?.product?.cover){
+              <img class="img-fulid " id="img-size" [src]="imgDomain+item?.product?.cover" alt="Product Image" width="200">
+            }@else {
+              <img src="images/download.png" id="img-size" alt="Product Image" width="200">
+            }
+              <div class="text">
+                  <p class="product-name" [routerLink]="['/product', item?.product?._id]">{{item?.product?.name}}</p>
+
+                  <p class="product-price">{{item?.price}} EGP</p>
+              </div>
+              <div class="quantity-container">
+                  <button class="minus-btn edit" disabled>-</button>
+                  <input type="text" class="quantity-input" [value]="item?.quantity" readonly>
+                  <button class="plus-btn edit">+</button>
+              </div>
+              <button class="remove-btn text-center" (click)="removeProduct(item._id)" id="edit">Remove</button>
+          </div>
+      </div>
+    }
+  </div>
+
+  <div class="checkout">
+      <h4>order details</h4>
+      <div>
+          <div class="first-text">
+              <p>Product Selected:</p>
+              <span>{{length}}</span>
+          </div>
+          @if(productCart?.totalPriceAfterDiscount || productCart?.totalPriceAfterDiscount == 0){
+            <div class="sceond-text ">
+                <p>Total Price:</p>
+                <span class="text-decoration-line-through fw-bold">{{productCart?.totalPrice}} EGP</span>
+            </div>
+            <div class="sceond-text">
+                <p>Total Price After Discount:</p>
+                <span class="fw-bold">{{productCart?.totalPriceAfterDiscount}} EGP</span>
+            </div>
+        }@else {
+          <div class="sceond-text ">
+            <p>Total Price:</p>
+            <span  class="fw-bold">{{productCart?.totalPrice}} EGP</span>
+          </div>
+        }
+        <div class="sceond-text">
+          <p>It is Delivered:</p>
+          <span class="fw-bold">{{date}}</span>
+         </div>
+
+
+        <form [formGroup]="couponForm" (ngSubmit)="applyCoupon(couponForm)" style="display: block;">
+            <div class="coupon-section">
+                <label for="couponCode">Enter your coupon code:</label>
+                <input type="text" formControlName="name" id="couponCode" placeholder="Enter your coupon code" />
+                <button type="submit" class="btn-st">Apply Coupon</button>
+              </div>
+            </form>
+
+
+
+      <button id="submitButton" (click)="checkout()" type="submit" class="confirm" form="formLocation">Confirm Order</button>
+      <a [routerLink]="['/home']" routerLinkActive="router-link-active"  class="add-another">Add Product</a>
+    </div>
+  </div>
+
+

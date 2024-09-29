@@ -11,7 +11,8 @@ categoriesRoute.use('/:categoryId/subcategories', subcategoryRoute)
 
 categoriesRoute.route('/')
     .get(getAllCategories)
-    .post(protectRoutes, checkActiveUser,allowedTo('manager', 'admin'),createCategoryValidator,createCategories);
+    .post(protectRoutes, checkActiveUser,allowedTo('manager', 'admin'),createCategories);
+    // .post(protectRoutes, checkActiveUser,allowedTo('manager', 'admin'),createCategoryValidator,createCategories);
 
 categoriesRoute.route("/:id")
     .get(getCategoryValidator,getCategory)
