@@ -66,7 +66,11 @@
                                 <li><a  routerLink="/signup" routerLinkActive="active">Sign Up</a></li>
                               }@else {
                                 <li><a [routerLink]="['/profile']">Profile</a></li>
+                                @if(roleBoolean){
+                                  <li><a [routerLink]="['/dashboard/category']">Dashboard</a></li>
+                                }@else{
                                 <li><a [routerLink]="['/myOrders']">Your Order</a></li>
+                                }
                                 <li><a  (click)="logout()">Logout</a></li>
                               }
                                 <!-- <li><a href="#">Features Page 3</a></li> -->

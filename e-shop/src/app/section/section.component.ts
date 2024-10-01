@@ -42,7 +42,7 @@ export class SectionComponent implements OnInit{
           items: 4
         }
       }
-    })}, 200);
+    })}, 300);
   }
   addToCart(productId:string){
     this._cartService.addCart(productId).subscribe({

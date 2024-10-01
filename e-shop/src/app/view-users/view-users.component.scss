@@ -1,0 +1,36 @@
+
+.pagination {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.pagination ul {
+  text-align: center;
+  width: 100%;
+}
+
+.pagination ul li {
+  display: inline;
+  margin: 0px 5px;
+}
+
+.pagination ul li a {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #2a2a2a;
+  display: inline-block;
+  text-align: center;
+  line-height: 44px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2a2a2a;
+}
+
+.pagination ul li a:hover,
+.pagination ul li.active a {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+.pagination  ul li a {
+  cursor: pointer;
+}

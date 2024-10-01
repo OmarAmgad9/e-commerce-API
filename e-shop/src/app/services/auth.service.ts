@@ -21,6 +21,7 @@ export class AuthService {
   private apiKey: string = '';
   private userRoute:string = '';
   userName :string = ''
+  userRole:string=''
   currentUser = new BehaviorSubject(null)
   constructor(private _HttpClient:HttpClient, private _GlobalService:GlobalService, private _Router:Router ,private cookieService: CookieService) {
     this.baseUrl = this._GlobalService.baseUrl;
@@ -47,6 +48,7 @@ export class AuthService {
       const decoded:any = jwtDecode(token);
       return  this.currentUser.next(decoded)
     }
+    return false
   }
   checkToken(){
     const token: any = localStorage.getItem('user');
@@ -81,6 +83,16 @@ export class AuthService {
     this.currentUser.next(null);
     this._Router.navigate(['/home'])
   }
+
+
+
+  // for Dashboard and Guard Routes
+  // getUserRole():string{
+
+  // }
+
+
+
 }
 
 

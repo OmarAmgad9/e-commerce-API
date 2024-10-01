@@ -1,0 +1,36 @@
+
+<div class="mt-nav">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-6 fw-bold">
+  <a class="navbar-brand submenu" href="#">Dashboard</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/dashboard/category' ]"  routerLinkActive="router-link-active" >Categories<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/dashboard/subcategory']"  routerLinkActive="router-link-active" >SubCategories<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/dashboard/product']"  routerLinkActive="router-link-active" >Product<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link"  [routerLink]="['/dashboard/users']"  routerLinkActive="router-link-active" >Users<span class="sr-only">(current)</span></a>
+      </li>
+        <!-- <a class="nav-link"  routerLinkActive="router-link-active" >cat.name <span class="sr-only">(current)</span></a> -->
+    </ul>
+  </div>
+</nav>
+
+
+</div>
+
+
+
+

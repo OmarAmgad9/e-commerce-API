@@ -1,0 +1,68 @@
+<div>
+  <app-view-dashboard></app-view-dashboard>
+</div>
+
+<div class="w-50 m-auto"></div>
+  <h2 class="text-center my-5">All SubCategories</h2>
+  <hr class="my-3">
+  <div class="d-flex justify-content-between">
+    <a class="btn btn-primary" routerLink="create">Create SubCategory</a>
+    <input (keyup)="searchData(searchInput.value)" #searchInput class="form-control me-2 w-25" type="search"
+      placeholder="Search" aria-label="Search">
+  </div>
+  <hr class="my-3">
+  <table class="w-100">
+    <thead>
+      <tr class="border-bottom">
+        <th>#</th>
+        <th>ID</th>
+        <th>SubCategory Name</th>
+        <th>Category Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(cat of subcategories; track cat._id){
+      <tr class="m-5 border-bottom">
+        <td>{{$index + 1}}</td>
+        <td>{{cat?._id|slice:-4}}</td>
+        <td>{{cat?.name}}</td>
+
+        <td>
+          <a [routerLink]="[cat._id,'update']"
+            class="btn btn-primary btn-sm my-3 rounded-3 mx-3">Update</a>
+          <button (click)="deleteSubcategory(cat._id)" class="btn btn-danger btn-sm rounded-3">Delete</button>
+        </td>
+      </tr>
+      }
+      @empty { <h1>empty</h1> }
+    </tbody>
+  </table>
+
+
+  <div class="pagination">
+    <ul>
+    @if(pagination.currentPage! > 1 ){
+      <li>
+        <a >< </a>
+      </li>
+    }
+    @if(pagination.prev! >= 1 ){
+    <li (click)="changePage(pagination.prev!)">
+      <a >{{pagination.prev}}</a>
+    </li>
+  }
+        <li  class="active" (click)="changePage(pagination.currentPage!)">
+            <a >{{pagination.currentPage}}</a>
+        </li>
+        @if(pagination.next ){
+          <li (click)="changePage(pagination.next!)" >
+              <a >{{pagination.next}}</a>
+          </li>
+        <li >
+            <!-- <a href="#">></a> -->
+            <a  (click)="changePage(pagination.next!)" >></a>
+        </li>
+      }
+    </ul>
+</div>

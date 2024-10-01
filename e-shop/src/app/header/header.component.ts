@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   subscription: any;
   length:number = 0;
   sub:any;
+  role:string=''
+  roleBoolean:boolean=false;
+  test:any={}
   constructor(private _AuthService: AuthService, private router:Router, private _cartService:CartServiceService){
   }
 
@@ -37,7 +40,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
         }
       },
       error(err) {
-        console.log(err)
       },
     });
     this.getLengthOfCart()
@@ -50,6 +52,10 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.subscription = this._AuthService.getUserName(userId).subscribe({
       next: (res:any) => {
         this.userName = res.data.name;
+        this.role = res.data.role;
+        if(this.role == 'manager' || this.role == 'admin'){
+          this.roleBoolean =  true;
+        }
       },error(err){
       }
     })

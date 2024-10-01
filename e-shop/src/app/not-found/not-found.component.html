@@ -1,1 +1,8 @@
-<p>not-found works!</p>
+<div class="not-found-container">
+  <h1 class="not-found-title">Oops! Page not found.</h1>
+  <p class="not-found-message">
+    The page you're looking for doesn't exist or has been moved.
+  </p>
+  <img src="error.webp" alt="404 Not Found" class="not-found-image">
+  <a [routerLink]="['/home']" class="back-home-link">Go back to Home</a>
+</div>

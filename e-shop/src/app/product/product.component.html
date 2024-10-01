@@ -1,3 +1,8 @@
+
+<div class="mt-nav">
+  <app-sub-category-section></app-sub-category-section>
+</div>
+
   <!-- ***** Main Banner Area Start ***** -->
   <div class="page-heading" id="top" >
     <div class="container">
@@ -65,10 +70,12 @@
                         }
                     </div>
                     <div class="down-content">
-                        <a [routerLink]="['/product',prod._id]"><h4>{{prod.name}}</h4></a>
+                        <a [routerLink]="['/product',prod._id]"><h4>{{prod.name|slice:0:16}}</h4></a>
                         <span>EGP {{prod.price}}</span>
                         <ul class="stars">
+                          <!-- @for(star of product.rate; track prod._id){ -->
                             <li><i class="fa fa-star"></i></li>
+                          <!-- } -->
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
