@@ -20,14 +20,20 @@ export class AuthService {
   private authRoute: string = '';
   private apiKey: string = '';
   private userRoute:string = '';
-  userName :string = ''
-  userRole:string=''
+  userName :string = '';
+  userRole:string='';
+  forgetRoute:string='';
+  verifyCodeRoute:string='';
+  restCodeRoute:string=''
   currentUser = new BehaviorSubject(null)
   constructor(private _HttpClient:HttpClient, private _GlobalService:GlobalService, private _Router:Router ,private cookieService: CookieService) {
     this.baseUrl = this._GlobalService.baseUrl;
     this.authRoute = this._GlobalService.authRoute;
     this.apiKey = this._GlobalService.apiKey;
     this.userRoute = this._GlobalService.userRoute;
+    this.forgetRoute = this._GlobalService.forgetPasswordRoute;
+    this.verifyCodeRoute = this._GlobalService.verifyCode;
+    this.restCodeRoute = this._GlobalService.restCode;
     if(localStorage.getItem('user') !== null){
       this.saveCurrentUser()
     }
@@ -74,6 +80,38 @@ export class AuthService {
         headers:{
           "X-API-KEY": `${this.apiKey}`,
           "X-CSRF-Token": `${this.cookieService.get('cookies')}`
+        }
+      }
+    )
+  }
+  ForgetPassword(formData:any):Observable<any>{
+    return this._HttpClient.post(`${this.baseUrl}${this.authRoute}${this.forgetRoute}`, formData,
+      {
+        headers:{
+          "X-API-KEY": `${this.apiKey}`,
+          "X-CSRF-Token": `${this.cookieService.get('cookies')}`
+        }
+      }
+    )
+  }
+  verifyCode(formData:any):Observable<any>{
+    return this._HttpClient.post(`${this.baseUrl}${this.authRoute}${this.verifyCodeRoute}`, formData,
+      {
+        headers:{
+          "X-API-KEY": `${this.apiKey}`,
+          // "X-CSRF-Token": `${this.cookieService.get('cookies')}`,
+          'authorization': `Bearer ${localStorage.getItem('user')}`
+        }
+      }
+    )
+  }
+  restCode(formData:Login):Observable<any>{
+    return this._HttpClient.post(`${this.baseUrl}${this.authRoute}${this.restCodeRoute}`, formData,
+      {
+        headers:{
+          "X-API-KEY": `${this.apiKey}`,
+          // "X-CSRF-Token": `${this.cookieService.get('cookies')}`,
+          'authorization': `Bearer ${localStorage.getItem('user')}`
         }
       }
     )

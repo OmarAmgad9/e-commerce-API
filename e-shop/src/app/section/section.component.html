@@ -24,7 +24,7 @@
                                   <div class="hover-content">
                                       <ul>
                                           <li><a [routerLink]="['/product',prod._id]" ><i class="fa fa-eye"></i></a></li>
-                                          <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
+                                          <li><a class="hover" (click)="addToWishlist(prod._id?.toString()!)"><i class="fa-solid fa-heart"></i></a></li>
                                           <li><a class="hover" (click)="addToCart(prod._id?.toString()!)"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                   </div>

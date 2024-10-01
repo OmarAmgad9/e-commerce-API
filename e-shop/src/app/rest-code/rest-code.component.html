@@ -1,0 +1,35 @@
+ <!-- Start Login -->
+ <div class="content-login" id="media-query">
+  <form [formGroup]="restCodeForm"  (ngSubmit)="ForgetPassword(restCodeForm)">
+      <h1 class="login">Forget Password</h1>
+      <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="Password" formControlName="password">
+        @if(restCodeForm.get('password')?.touched){
+          @if(restCodeForm.get('password')?.errors?.['required'] ){
+          <p class="text-danger ">Password Required</p>
+          }
+          @if(restCodeForm.get('password')?.errors?.['minlength'] || restCodeForm.get('password')?.errors?.['maxlength']){
+            <p class="text-danger ">Password must be at least 8 characters</p>
+          }
+        }
+    </div>
+    <div class="mb-3">
+      <label for="Password" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="Password" formControlName="confirmPassword">
+      @if(restCodeForm.get('password')?.touched){
+        @if(restCodeForm.get('password')?.errors?.['required'] ){
+        <p class="text-danger ">Password Required</p>
+        }
+        @if(restCodeForm.get('password')?.errors?.['minlength'] || restCodeForm.get('password')?.errors?.['maxlength']){
+          <p class="text-danger ">Password must be at least 8 characters</p>
+        }
+      }
+  </div>
+
+      <button type="submit" [disabled]="restCodeForm.invalid" class="btn btn-primary submit">Submit</button>
+    </form>
+  </div>
+
+<!-- End Login -->
+

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, Input, OnInit} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartServiceService } from '../services/cart-service.service';
+import { WishlistServiceService } from '../services/wishlist-service.service';
 
 declare var $: any;
 // import * as $ from 'jquery';
@@ -20,7 +21,7 @@ export class SectionComponent implements OnInit{
   @Input() title: string = '';
   @Input() id: number = 0;
   @Input() domain: string = ''
-  constructor(private _cartService:CartServiceService) {}
+  constructor(private _cartService:CartServiceService, private _wishlist:WishlistServiceService) {}
 
   ngOnInit(): void {
     setTimeout(function(){
@@ -42,12 +43,22 @@ export class SectionComponent implements OnInit{
           items: 4
         }
       }
-    })}, 300);
+    })}, 500);
   }
   addToCart(productId:string){
     this._cartService.addCart(productId).subscribe({
       next:(value)=> {
         alert('you Product Add To Cart')
+      },
+      error(err) {
+        console.log(err)
+      },
+    })
+  }
+  addToWishlist(productId:string){
+    this._wishlist.addCart(productId).subscribe({
+      next:(value)=> {
+        alert('you Product Add To Wishlist')
       },
       error(err) {
         console.log(err)

@@ -9,6 +9,9 @@ export const routes: Routes = [
   {path:'home', title:'Home' ,component: HomeComponent},
   {path:'signup', title: 'SignUp', loadComponent:()=>import('./signup/signup.component').then(m=>m.SignupComponent)},
   {path: 'login', title: 'Login',  loadComponent:()=>import('./login/login.component').then(m=>m.LoginComponent)},
+  {path: 'forgetpassword', title: 'Forget Password',  loadComponent:()=>import('./forget-password/forget-password.component').then(m=>m.ForgetPasswordComponent)},
+  {path: 'verifyCode', title: 'verify Code',  loadComponent:()=>import('./verify-code/verify-code.component').then(m=>m.VerifyCodeComponent)},
+  {path: 'restCode', title: 'verify Code',  loadComponent:()=>import('./rest-code/rest-code.component').then(m=>m.RestCodeComponent)},
   {
     path: 'categories',
     children:[
@@ -29,6 +32,7 @@ export const routes: Routes = [
     ]
   },
   {path:'cart', title:'cart',canActivate:[authGuard] ,loadComponent:()=>import('./cart/cart.component').then(m=>m.CartComponent)},
+  {path:'wishlist', title:'wishlist',canActivate:[authGuard] ,loadComponent:()=>import('./wishlist/wishlist.component').then(m=>m.WishlistComponent)},
   {path:'myOrders', title: 'Your Order',canActivate:[authGuard] ,loadComponent:()=>import('./order/order.component').then(m=>m.OrderComponent)},
   {path:'profile', title: 'Profile',canActivate:[authGuard] ,loadComponent:()=>import('./profile/profile.component').then(m=>m.ProfileComponent)},
 
@@ -62,6 +66,14 @@ export const routes: Routes = [
           {path:'', title:'Dashboard Product', loadComponent:()=>import('./view-product/view-product.component').then(m=>m.ViewProductComponent)},
           {path:'create', title:'Create Product', loadComponent:()=>import('./create-product/create-product.component').then(m=>m.CreateProductComponent)},
           {path:':id/update', title:'update Product', loadComponent:()=>import('./update-product/update-product.component').then(m=>m.UpdateProductComponent)},
+        ]
+      },
+      {
+        path:'coupons',
+        children:[
+          {path:'', title:'Dashboard Coupons', loadComponent:()=>import('./coupons/coupons.component').then(m=>m.CouponsComponent)},
+          {path:'create', title:'Create Coupons', loadComponent:()=>import('./create-coupons/create-coupons.component').then(m=>m.CreateCouponsComponent)},
+          {path:':id/update', title:'update Product', loadComponent:()=>import('./updatecoupons/updatecoupons.component').then(m=>m.UpdatecouponsComponent)},
         ]
       },
       {path:'users', title:'Dashboard users', canActivate:[dashboardAuthGuard] ,loadComponent:()=>import('./view-users/view-users.component').then(m=>m.ViewUsersComponent)},

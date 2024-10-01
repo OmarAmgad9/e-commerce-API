@@ -6,6 +6,7 @@ import { ActivatedRoute, RouterLink} from '@angular/router';
 import { CartServiceService } from '../services/cart-service.service';
 import { CommonModule } from '@angular/common';
 import { SubCategorySectionComponent } from "../sub-category-section/sub-category-section.component";
+import { WishlistServiceService } from '../services/wishlist-service.service';
 declare var $: any; // Import jQuery for Bootstrap modal
 
 @Component({
@@ -32,7 +33,7 @@ export class ProductComponent implements OnInit,OnDestroy {
   @Input() querySearch: string='';
   subscriptionCategory: any;
   filterSubCategories:string='';
-  constructor(private _productService: ProductsService ,private _route: ActivatedRoute, private _cartService: CartServiceService){}
+  constructor(private _productService: ProductsService,private _wishlist:WishlistServiceService ,private _route: ActivatedRoute, private _cartService: CartServiceService){}
 
 
 
@@ -95,6 +96,15 @@ export class ProductComponent implements OnInit,OnDestroy {
     this._cartService.addCart(productId).subscribe({
       next:(value)=> {
         alert('you Product Add To Cart')
+      },
+      error(err) {
+      },
+    })
+  }
+  addToWishlist(productId:string){
+    this._wishlist.addCart(productId).subscribe({
+      next:(value)=> {
+        alert('you Product Add To Wishlist')
       },
       error(err) {
       },

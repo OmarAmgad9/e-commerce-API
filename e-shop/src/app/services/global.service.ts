@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 export class GlobalService {
   baseUrl: string = 'http://localhost:3400';
   authRoute: string = '/api/v1/auth';
+  forgetPasswordRoute:string='/forgetPassword';
+  verifyCode:string='/verify';
+  restCode:string='/restCode'
   categoryRoute:string = '/api/v1/categories'
   subCategoryRoute:string = '/api/v1/subcategory'
   productRoute: string = '/api/v1/product';
@@ -14,7 +17,7 @@ export class GlobalService {
   couponsRoute:string = '/api/v1/coupon'
   cartImage: string = `${this.baseUrl}/carts/`;
   ordersRoute: string = '/api/v1/orders';
-  wishlistRoute: string = '/api/v1/wishlist';
+  wishlistRoute: string = '/api/v1/wishlist/';
   productImage: string = `${this.baseUrl}/products/`;
   usersImage: string = `${this.baseUrl}/images/users/`;
   categoryImage: string = `${this.baseUrl}/categories/`;

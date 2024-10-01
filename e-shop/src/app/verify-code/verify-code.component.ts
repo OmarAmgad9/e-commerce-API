@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-forget-password',
+  selector: 'app-verify-code',
   standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './forget-password.component.html',
-  styleUrl: './forget-password.component.scss'
+  imports: [ReactiveFormsModule, RouterLink],
+  templateUrl: './verify-code.component.html',
+  styleUrl: './verify-code.component.scss'
 })
-export class ForgetPasswordComponent implements OnInit{
+export class VerifyCodeComponent implements OnInit{
   ForgetPasswordForm = new FormGroup({
-    email: new FormControl(null, [Validators.email, Validators.required]),
+    email: new FormControl(null, [ Validators.required]),
   })
   constructor(private _AuthService: AuthService, private _Route:Router){}
   ForgetPassword(formData:FormGroup){
-    this._AuthService.ForgetPassword(formData.value).subscribe({
+    this._AuthService.verifyCode(formData.value).subscribe({
       next: (res) => {
         localStorage.setItem('user', res.resetToken);
 
-        this._Route.navigate(['/verifyCode']);
+        this._Route.navigate(['/restCode']);
       },
       error(err){
-        console.log(err)
       }
     })
   }
