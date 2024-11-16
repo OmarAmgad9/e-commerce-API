@@ -6,12 +6,13 @@
   "scripts": {
     "start:dev": "nodemon app.ts",
     "start:prod": "NODE_ENV=prod node ./dist/app.js",
-    "build": "tsc"
+    "build:functions": "tsc --outDir netlify/functions"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@netlify/functions": "^2.8.2",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
     "@types/csurf": "^1.11.5",
