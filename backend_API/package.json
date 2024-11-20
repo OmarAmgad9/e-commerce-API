@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "nodemon app.ts",
     "start:prod": "NODE_ENV=prod node ./dist/app.js",
-    "build:functions": "tsc --outDir netlify/functions"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
