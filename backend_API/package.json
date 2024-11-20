@@ -2,10 +2,10 @@
   "name": "e-commerce-api",
   "version": "1.0.0",
   "description": "e-commerce API. using Nodejs, Angular and monogedb",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon app.ts",
-    "start:prod": "NODE_ENV=prod node ./dist/app.js",
+    "start:dev": "nodemon index.ts",
+    "start:prod": "NODE_ENV=prod node ./dist/index.js",
     "build": "tsc"
   },
   "keywords": [],
