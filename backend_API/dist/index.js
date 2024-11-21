@@ -18,7 +18,8 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json({ limit: '3kb' }));
 app.use((0, cors_1.default)({
-    origin: ['http://localhost:4200', 'http://shop-72537.web.app'],
+    // origin: ['http://localhost:4200', 'http://shop-72537.web.app'],
+    origin: ['*'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-API-KEY'],
     credentials: true
