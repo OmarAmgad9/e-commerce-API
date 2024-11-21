@@ -16,7 +16,8 @@ import csurf from 'csurf'
 const app: express.Application = express()
 app.use(express.json({limit: '3kb'}));
 app.use(cors({
-    origin: ['http://localhost:4200', 'http://shop-72537.web.app'],
+    // origin: ['http://localhost:4200', 'http://shop-72537.web.app'],
+    origin: ['*'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-API-KEY'],
     credentials:true
